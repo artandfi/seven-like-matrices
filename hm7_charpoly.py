@@ -43,15 +43,12 @@ def charpoly_hm7_structure_preserving(matrix):
     for i in range(n-3, -1, -1):
         prods_a[i] *= prods_a[i + 1]
     
-    matrix[0, 0] = Lambda - matrix[0, 0]
     prod_b = -matrix[1, 0]
-    s = matrix[0, 0] * prods_a[0]
+    s = (Lambda - matrix[0, 0]) * prods_a[0]
 
     for i in range(1, n-1):
         s += ((-1) ** i) * (-matrix[0, i]) * prods_a[i] * prod_b
         prod_b *= -matrix[i + 1, i]
-
-    matrix[0, 0] = Lambda - matrix[0, 0]
 
     return s + ((-1) ** (n - 1)) * (-matrix[0, n-1]) * prod_b
 
